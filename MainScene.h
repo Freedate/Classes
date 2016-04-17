@@ -20,7 +20,6 @@ public:
 	PhysicsWorld* m_world;
 	void setPhyWorld(PhysicsWorld* world) { m_world = world; }
 
-	void addNewSpriteAtPosition(Point p);
 
 
 

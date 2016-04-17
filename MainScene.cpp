@@ -64,7 +64,7 @@ bool Main::init()
 }
 
 void Main::initPlayer() {
-	playerspr = Sprite::create("Spr_Player_Idle.png");
+	playerspr = Sprite::create("../../Classes/res/Spr_Player_Idle.png");
 	playerspr->setAnchorPoint(Point(0.5, 0.5));
 	playerspr->setPosition(Point(100, 100));
 
@@ -81,7 +81,7 @@ void Main::initPlayer() {
 bool Main::onTouchBegan(Touch *touch, Event *unused_event) {
 	CCLOG("onTouchBegan");
 
-	auto jump = JumpBy::create(1.0, Point(0, 50), 50, 1);
+	auto jump = JumpBy::create(0.5, Point(0, 50), 50, 1);
 	playerspr->runAction(jump);
 	return true;
 }
