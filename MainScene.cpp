@@ -38,7 +38,7 @@ bool Main::init()
 	{
 		return false;
 	}
-
+	initGround();
 
 
 
@@ -65,14 +65,14 @@ bool Main::init()
 
 void Main::initPlayer() {
 	playerspr = Sprite::create("../../Classes/res/Spr_Player_Idle.png");
-	playerspr->setAnchorPoint(Point(0.5, 0.5));
-	playerspr->setPosition(Point(100, 100));
+	playerspr->setAnchorPoint(Point(0.0, 0.0));
+	playerspr->setPosition(Point(100, 200));
 
-	auto material1 = PhysicsMaterial(100.0f, 0.0f, 0.0f);
-	auto material2 = PhysicsMaterial(0.0f, 1.0f, 0.1f);
+	auto material1 = PhysicsMaterial(1.0f, 0.0f, 1.0f);
+	auto material2 = PhysicsMaterial();
 
-	auto body = PhysicsBody::createCircle(playerspr->getContentSize().width / 2, material1);
-	body->setMass(100.0f);
+	auto body = PhysicsBody::createBox(Size(playerspr->getContentSize().width/2,playerspr->getContentSize().height), material1);
+	body->setMass(50.0f);
 	playerspr->setPhysicsBody(body);
 
 
@@ -84,4 +84,18 @@ bool Main::onTouchBegan(Touch *touch, Event *unused_event) {
 	auto jump = JumpBy::create(0.5, Point(0, 50), 50, 1);
 	playerspr->runAction(jump);
 	return true;
+}
+
+void Main::initGround() {
+	auto groundspr = Sprite::create("../../Classes/res/Ground_0.png");
+	groundspr->setAnchorPoint(Point(0.0, 0.0));
+	groundspr->setPosition(Point(10, 10));
+
+	auto material1 = PhysicsMaterial(1.0f, 0.0f, 1.0f);
+	auto material2 = PhysicsMaterial();
+	auto body = PhysicsBody::createBox(Size(groundspr->getContentSize().width, groundspr->getContentSize().height/4), material1);
+	body->setMass(50.0f);
+	groundspr->setPhysicsBody(body);
+	this->addChild(groundspr);
+
 }

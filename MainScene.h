@@ -11,6 +11,7 @@ public:
 
 	virtual bool init();
 	void initPlayer();
+	void initGround();
 	virtual bool onTouchBegan(Touch *touch, Event *unused_event);
 
 	Sprite* playerspr;
