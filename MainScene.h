@@ -18,8 +18,8 @@ public:
 
 	CREATE_FUNC(Main);
 
-	PhysicsWorld* m_world;
-	void setPhyWorld(PhysicsWorld* world) { m_world = world; }
+	//PhysicsWorld* m_world;
+	//void setPhyWorld(PhysicsWorld* world) { m_world = world; }
 
 
 

@@ -5,10 +5,13 @@ USING_NS_CC;
 Scene* Main::createScene()
 {
 
-	//auto scene = Scene::create();
-	//auto layer = Main::create();
-	//scene->addChild(layer);
+	auto scene = Scene::create();
+	auto layer = Main::create();
+	scene->addChild(layer);
 
+	/////아래는 물리엔진 적용, 위는 물리엔진 미적용
+
+	/*
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vect gravity = Vect(0.0f, -300.0f);
 
@@ -26,7 +29,7 @@ Scene* Main::createScene()
 	layer->setPhyWorld(scene->getPhysicsWorld());
 
 	scene->addChild(layer);
-
+	*/
 	return scene;
 }
 
@@ -66,22 +69,24 @@ bool Main::init()
 void Main::initPlayer() {
 	playerspr = Sprite::create("../../Classes/res/Spr_Player_Idle.png");
 	playerspr->setAnchorPoint(Point(0.0, 0.0));
-	playerspr->setPosition(Point(100, 200));
-
-	auto material1 = PhysicsMaterial(1.0f, 0.0f, 1.0f);
+	playerspr->setPosition(Point(100, 10));
+	
+	/*
+	auto material1 = PhysicsMaterial(0.1f, 1.0f, 0.5f);
 	auto material2 = PhysicsMaterial();
 
 	auto body = PhysicsBody::createBox(Size(playerspr->getContentSize().width/2,playerspr->getContentSize().height), material1);
 	body->setMass(50.0f);
 	playerspr->setPhysicsBody(body);
-
+	*/
 
 	this->addChild(playerspr);
 }
 bool Main::onTouchBegan(Touch *touch, Event *unused_event) {
 	CCLOG("onTouchBegan");
+	Point tmp = playerspr->getPosition();
 
-	auto jump = JumpBy::create(0.5, Point(0, 50), 50, 1);
+	auto jump = JumpBy::create(0.5, Point(0,0), 50, 1);
 	playerspr->runAction(jump);
 	return true;
 }
@@ -89,13 +94,13 @@ bool Main::onTouchBegan(Touch *touch, Event *unused_event) {
 void Main::initGround() {
 	auto groundspr = Sprite::create("../../Classes/res/Ground_0.png");
 	groundspr->setAnchorPoint(Point(0.0, 0.0));
-	groundspr->setPosition(Point(10, 10));
+	groundspr->setPosition(Point(0, 0));
 
-	auto material1 = PhysicsMaterial(1.0f, 0.0f, 1.0f);
-	auto material2 = PhysicsMaterial();
-	auto body = PhysicsBody::createBox(Size(groundspr->getContentSize().width, groundspr->getContentSize().height/4), material1);
-	body->setMass(50.0f);
-	groundspr->setPhysicsBody(body);
+	//auto material1 = PhysicsMaterial(1.0f, 0.0f, 1.0f);
+	//auto material2 = PhysicsMaterial();
+	//auto body = PhysicsBody::createBox(Size(groundspr->getContentSize().width, groundspr->getContentSize().height/4), material1);
+	//body->setMass(50.0f);
+	//groundspr->setPhysicsBody(body);
 	this->addChild(groundspr);
 
 }
