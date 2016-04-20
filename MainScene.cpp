@@ -4,11 +4,11 @@ USING_NS_CC;
 
 Scene* Main::createScene()
 {
-
+	
 	auto scene = Scene::create();
 	auto layer = Main::create();
 	scene->addChild(layer);
-
+	
 	/////아래는 물리엔진 적용, 위는 물리엔진 미적용
 
 	/*
@@ -79,6 +79,7 @@ void Main::initPlayer() {
 	body->setMass(50.0f);
 	playerspr->setPhysicsBody(body);
 	*/
+	
 
 	this->addChild(playerspr);
 }
@@ -86,21 +87,28 @@ bool Main::onTouchBegan(Touch *touch, Event *unused_event) {
 	CCLOG("onTouchBegan");
 	Point tmp = playerspr->getPosition();
 
-	auto jump = JumpBy::create(0.5, Point(0,0), 50, 1);
+	auto jump = JumpBy::create(0.5, Point(0,0), 200, 1);
 	playerspr->runAction(jump);
 	return true;
 }
 
 void Main::initGround() {
-	auto groundspr = Sprite::create("../../Classes/res/Ground_0.png");
-	groundspr->setAnchorPoint(Point(0.0, 0.0));
-	groundspr->setPosition(Point(0, 0));
-
-	//auto material1 = PhysicsMaterial(1.0f, 0.0f, 1.0f);
-	//auto material2 = PhysicsMaterial();
-	//auto body = PhysicsBody::createBox(Size(groundspr->getContentSize().width, groundspr->getContentSize().height/4), material1);
-	//body->setMass(50.0f);
-	//groundspr->setPhysicsBody(body);
-	this->addChild(groundspr);
-
+	groundspr0 = Sprite::create("../../Classes/res/Ground_0.png");
+	groundspr1 = Sprite::create("../../Classes/res/Ground_1.png");
+	groundspr2 = Sprite::create("../../Classes/res/Ground_2.png");
+	
+	groundspr0->setAnchorPoint(Point(0, 0));
+	groundspr0->setPosition(Point(0, 0));
+	
+	
+	
+	/*
+	auto material1 = PhysicsMaterial(1.0f, 0.0f, 1.0f);
+	auto material2 = PhysicsMaterial();
+	auto body = PhysicsBody::createBox(Size(groundspr->getContentSize().width, groundspr->getContentSize().height/4), material1);
+	body->setMass(50.0f);
+	groundspr->setPhysicsBody(body);
+	*/
+	this->addChild(groundspr0);
+	
 }

@@ -15,6 +15,9 @@ public:
 	virtual bool onTouchBegan(Touch *touch, Event *unused_event);
 
 	Sprite* playerspr;
+	Sprite* groundspr0;
+	Sprite* groundspr1;
+	Sprite* groundspr2;
 
 	CREATE_FUNC(Main);
 
